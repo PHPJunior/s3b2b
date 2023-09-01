@@ -1,6 +1,6 @@
 <p align="center">
 <a href="#" target="_blank">
-<img src="art/logo.svg" width="100" alt="Laravel Logo">
+<img src="art/logo.svg" width="300" alt="Laravel Logo">
 </a>
 </p>
 
