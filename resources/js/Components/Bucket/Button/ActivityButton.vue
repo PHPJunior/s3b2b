@@ -15,12 +15,26 @@ const showActivity = ref(false);
 const setupWebSocketListeners = () => {
   const fileEventsChannel = Echo.channel('file-events');
 
+  const fileMoveEventData = (event, type, status) => {
+    return {
+      fileName: event.data.fileName,
+      type: 'moving',
+      status: 'pending',
+      data: {
+        from: event.data.from.bucket,
+        to: event.data.to.bucket,
+      }
+    }
+  }
+
   fileEventsChannel.listen('FileMovingEvent', (event) => {
-    activityStore.addActivity(event.data);
+    const data = fileMoveEventData(event, 'moving', 'pending');
+    activityStore.addActivity(data);
   });
 
   fileEventsChannel.listen('FileMovedEvent', (event) => {
-    activityStore.markActivityAsCompleted(event.data);
+    const data = fileMoveEventData(event, 'moving', 'completed');
+    activityStore.markActivityAsCompleted(data);
   });
 };
 
@@ -117,12 +131,12 @@ onMounted(() => {
                     <span
                       :class="[
                         'h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white',
-                        activity.type === 'moving' ? 'bg-indigo-500' : 'bg-green-500'
+                        activity.status === 'moving' ? 'bg-indigo-500' : 'bg-green-500'
                       ]"
                     >
                       <component
                         :is="CheckIcon"
-                        v-if="activity.type !== 'moving'"
+                        v-if="activity.status !== 'moving'"
                         class="h-5 w-5 text-white"
                         aria-hidden="true"
                       />
@@ -155,7 +169,7 @@ onMounted(() => {
                         {{ activity.fileName }}
                       </p>
                       <p class="text-xs text-gray-500">
-                        <span class="font-bold">{{ activity.from.bucket }}</span> to <span class="font-semibold">{{ activity.to.bucket }}</span>
+                        <span class="font-bold">{{ activity.data.from }}</span> to <span class="font-semibold">{{ activity.data.to }}</span>
                       </p>
                     </div>
                   </div>

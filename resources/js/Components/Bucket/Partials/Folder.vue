@@ -3,7 +3,7 @@ import {ExclamationCircleIcon, FolderIcon} from "@heroicons/vue/24/outline/index
 import OptionMenu from "@components/Bucket/Partials/OptionMenu.vue";
 import {ref, defineEmits} from "vue";
 import route from "ziggy-js";
-import {router} from "@inertiajs/vue3";
+import { useDropZone } from '@vueuse/core'
 import { DialogTitle } from "@headlessui/vue";
 import DeleteModal from "@components/Bucket/Modals/DeleteModal.vue";
 import FileMoveModal from "@components/Bucket/Modals/FileMoveModal.vue";
@@ -24,6 +24,16 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['deleted', 'moved'])
+const dropZoneRef = ref(null)
+
+const onDrop = (files) => {
+  console.log(props.folder)
+  console.log(files)
+}
+
+useDropZone(dropZoneRef, {
+  onDrop,
+})
 
 const openDeleteModal = ref(false)
 const openFileMoveModal = ref(false)
@@ -72,7 +82,10 @@ const openFileMoveModal = ref(false)
     </div>
   </DeleteModal>
 
-  <div class="flex flex-col justify-between p-3 cursor-pointer rounded-md text-gray-500 ring-1 ring-inset ring-gray-500/10 hover:shadow-md h-28">
+  <div
+    ref="dropZoneRef"
+    class="flex flex-col justify-between p-3 cursor-pointer rounded-md text-gray-500 ring-1 ring-inset ring-gray-500/10 hover:shadow-md h-28"
+  >
     <div class="flex justify-between">
       <div class="flex h-10 w-10 flex-none items-center justify-center rounded-md bg-teal-500">
         <FolderIcon

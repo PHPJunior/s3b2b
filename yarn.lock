@@ -818,6 +818,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/components@npm:^10.4.1":
+  version: 10.4.1
+  resolution: "@vueuse/components@npm:10.4.1"
+  dependencies:
+    "@vueuse/core": 10.4.1
+    "@vueuse/shared": 10.4.1
+    vue-demi: ">=0.14.5"
+  checksum: 5f423fe826896c4a2ec9bc19a72fd1e036c3e197affa07bf465b0c44f603d7c89791d721508724e54237528aee3e48b4b3039c56f62f6c46b08a9a0fff01e617
+  languageName: node
+  linkType: hard
+
+"@vueuse/core@npm:10.4.1":
+  version: 10.4.1
+  resolution: "@vueuse/core@npm:10.4.1"
+  dependencies:
+    "@types/web-bluetooth": ^0.0.17
+    "@vueuse/metadata": 10.4.1
+    "@vueuse/shared": 10.4.1
+    vue-demi: ">=0.14.5"
+  checksum: 2232ad6dd3af89aee80d38ffcbe6a3386d1f55f66ac212baac10c3a506f43ee58a4fffabaa7ec483e62dbf6f231ee7ce1fb82ab91f9312e2d9f8c554810d2773
+  languageName: node
+  linkType: hard
+
 "@vueuse/core@npm:^10.3.0":
   version: 10.3.0
   resolution: "@vueuse/core@npm:10.3.0"
@@ -837,12 +860,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vueuse/metadata@npm:10.4.1":
+  version: 10.4.1
+  resolution: "@vueuse/metadata@npm:10.4.1"
+  checksum: d9c584f4581eed4e7e81423916077dada73b22ee3f1e798682aac1ee640a91b0287088f26dc7e72d7b6ad2e6c8d630fd7ee8ba02ca5987c033ed8391e92b5542
+  languageName: node
+  linkType: hard
+
 "@vueuse/shared@npm:10.3.0":
   version: 10.3.0
   resolution: "@vueuse/shared@npm:10.3.0"
   dependencies:
     vue-demi: ">=0.14.5"
   checksum: 2392ce5c798ff2aa09c82de11fef3a6cc1eb3d198598e0f19f803645003003e06c90bc4cde5367200f8458a31344edcd4ab571b84a4f7d21ee8083b9309c9bf3
+  languageName: node
+  linkType: hard
+
+"@vueuse/shared@npm:10.4.1":
+  version: 10.4.1
+  resolution: "@vueuse/shared@npm:10.4.1"
+  dependencies:
+    vue-demi: ">=0.14.5"
+  checksum: e1cc0b970e0ce06c8bc2cbed3ce37a9ee7ff0667fc3f354398b4201259db1848da428d62c9ea19c3124f5eb80ce0b3f97328f537e3238ec68cdbb726ff3e3fe8
   languageName: node
   linkType: hard
 
@@ -3088,6 +3127,7 @@ __metadata:
     "@uppy/vue": ^1.0.2
     "@uppy/xhr-upload": ^3.3.2
     "@vitejs/plugin-vue": ^4.3.2
+    "@vueuse/components": ^10.4.1
     "@vueuse/core": ^10.3.0
     autoprefixer: ^10.4.15
     axios: ^1.1.2

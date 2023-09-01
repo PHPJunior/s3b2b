@@ -6,20 +6,15 @@ export const useActivitiesStore = defineStore('activities', {
   }),
   getters: {
     movingActivities: state => {
-      return state.activities.filter(activity => activity.type === 'moving');
+      return state.activities.filter(activity => activity.type === 'moving' && activity.status === 'pending');
     },
   },
   actions: {
     findActivityIndex(activity) {
       return this.activities.findIndex(item => {
-        const { from, to, fileName } = item;
-        const { key, secret, bucket } = from;
+        const { type, fileName } = item;
         return (
-          key === activity.from.key &&
-          secret === activity.from.secret &&
-          bucket === activity.from.bucket &&
-          to.key === activity.to.key &&
-          to.secret === activity.to.secret &&
+          type === activity.type &&
           fileName === activity.fileName
         );
       });
@@ -27,22 +22,13 @@ export const useActivitiesStore = defineStore('activities', {
     addActivity(activity) {
       const exist = this.findActivityIndex(activity);
       if (exist === -1) {
-        this.activities.push({
-          ...activity,
-          type: 'moving',
-        });
+        this.activities.push(activity);
       }
     },
     markActivityAsCompleted(activity) {
       const index = this.findActivityIndex(activity);
       if (index !== -1) {
-        this.activities[index].type = 'completed';
-      }
-    },
-    removeActivity(activity) {
-      const index = this.findActivityIndex(activity);
-      if (index !== -1) {
-        this.activities.splice(index, 1);
+        this.activities[index].status = 'completed';
       }
     },
     clearActivities() {
