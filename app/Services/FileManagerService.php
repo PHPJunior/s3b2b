@@ -157,11 +157,12 @@ class FileManagerService
 
     /**
      * @param mixed $path
+     * @param string $name
      * @return bool
      */
-    public function createFolder(mixed $path): bool
+    public function createFolder(mixed $path, string $name): bool
     {
-        $path = $this->cleanFolder($path);
+        $path = $this->cleanFolder($path . '/' . $name);
         return $this->disk->makeDirectory($path);
     }
 

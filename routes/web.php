@@ -22,6 +22,8 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::get('buckets/{bucket}/files', [FileManagerController::class, 'getFiles'])->name('buckets.files');
 
+    Route::post('buckets/{bucket}/folders', [FileManagerController::class, 'createFolder'])->name('buckets.folders.create');
+
     Route::post('buckets/{bucket}/files/upload', [FileManagerController::class, 'uploadFile'])->name('buckets.files.upload');
     Route::delete('buckets/{bucket}/files/delete', [FileManagerController::class, 'deleteFile'])->name('buckets.files.delete');
     Route::delete('buckets/{bucket}/folders/delete', [FileManagerController::class, 'deleteFolder'])->name('buckets.folders.delete');

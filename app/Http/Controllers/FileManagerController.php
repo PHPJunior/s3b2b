@@ -60,8 +60,9 @@ class FileManagerController extends Controller
     public function createFolder(Request $request, Bucket $bucket)
     {
         $path = $request->get('path');
+        $name = $request->get('name');
         $bucketDisk = $this->bucketService->getBucketDiskById($bucket->getKey());
-        $this->service->setDisk($bucketDisk)->createFolder($path);
+        $this->service->setDisk($bucketDisk)->createFolder($path, $name);
     }
 
     public function rename(Request $request, Bucket $bucket)

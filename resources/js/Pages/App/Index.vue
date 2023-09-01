@@ -55,9 +55,9 @@ onMounted(() => {
     <div
       v-for="bucket in buckets"
       :key="bucket.id"
-      :class="[bucket.id === selectedBucket?.id ? 'block' : 'hidden']"
     >
       <FileManager
+        v-if="bucket.id === selectedBucket?.id"
         :bucket="bucket"
         folder-cols="grid-cols-6"
         file-cols="grid-cols-4"

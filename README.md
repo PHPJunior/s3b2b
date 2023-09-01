@@ -30,7 +30,7 @@ php artisan queue:work
 soketi start
 ```
 ## Todo
-- [ ] add new folder
+- [x] add new folder
 - [ ] drag and move to folder
 
 ## Credits

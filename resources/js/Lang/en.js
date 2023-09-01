@@ -5,6 +5,12 @@ export default {
   'file_manager': {
     'files': 'Files',
     'folders': 'Folders',
+    'form': {
+      'new_folder': {
+        'title': 'New Folder',
+        'description': 'Fill in the form below to create a new folder.',
+      }
+    }
   },
   'activity': {
     'title': 'Recent Activity',

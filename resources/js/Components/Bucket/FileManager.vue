@@ -13,8 +13,10 @@ import { ExclamationCircleIcon } from "@heroicons/vue/24/outline/index.js";
 import FileUploadModal from "@components/Bucket/Modals/FileUploadModal.vue";
 import {
   CloudArrowUpIcon,
-  HomeIcon
+  HomeIcon,
+  FolderPlusIcon
 } from "@heroicons/vue/20/solid/index.js";
+import NewFolderModal from "@components/Bucket/Modals/NewFolderModal.vue";
 
 const props = defineProps({
   bucket: {
@@ -55,6 +57,7 @@ const loading = ref(false);
 const showBucketEditForm = ref(false);
 const openBucketDeleteModal = ref(false);
 const openFileUploadModal = ref(false);
+const openNewFolderModal = ref(false);
 
 const loadData = async (path = '/') => {
   loading.value = true;
@@ -150,6 +153,7 @@ onMounted(() => {
 
   <!-- File Upload Modal -->
   <FileUploadModal
+    v-if="!loading"
     :open="openFileUploadModal"
     :upload-url="route('buckets.files.upload', {
       bucket: props.bucket.id,
@@ -159,9 +163,20 @@ onMounted(() => {
     @close="openFileUploadModal = false"
   />
 
-  <div class="bg-white relative">
-    <div class="flex gap-3 items-center justify-between sticky top-0 bg-gray-100 ">
+  <!-- New Folder Modal -->
+  <NewFolderModal
+    v-if="!loading"
+    :open="openNewFolderModal"
+    :current-path="storage.current.path"
+    :create-url="route('buckets.folders.create', {
+      bucket: props.bucket.id,
+    })"
+    @created="loadData(storage.current.path)"
+    @close="openNewFolderModal = false"
+  />
 
+  <div class="bg-white relative">
+    <div class="flex gap-3 items-center justify-between sticky top-0 bg-gray-100 divided-x">
       <!-- Breadcrumbs -->
       <div class="px-5 py-3 overflow-x-auto">
         <nav
@@ -249,8 +264,21 @@ onMounted(() => {
       <!-- Menu -->
       <div
         v-if="!hideMenu"
-        class="px-5 flex gap-3 items-center"
+        class="px-5 flex gap-3 items-center divide-x"
       >
+        <div
+          :class="['text-gray-700', 'flex px-2 py-2 text-sm', 'cursor-pointer']"
+          @click="openNewFolderModal = true"
+        >
+          <FolderPlusIcon
+            class="mr-1.5 h-5 w-5 text-gray-400"
+            aria-hidden="true"
+          />
+          <span>
+            {{ $t('buttons.new_folder') }}
+          </span>
+        </div>
+
         <div
           :class="['text-gray-700', 'flex px-2 py-2 text-sm', 'cursor-pointer']"
           @click="openFileUploadModal = true"

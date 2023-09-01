@@ -83,6 +83,7 @@ const openFileMoveModal = ref(false)
 
       <div v-if="!hideMenu">
         <OptionMenu
+          hide-upload
           hide-edit
           @delete="openDeleteModal = true"
           @move="openFileMoveModal = true"
