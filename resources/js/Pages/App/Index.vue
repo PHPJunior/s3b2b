@@ -5,7 +5,7 @@ import { storeToRefs } from 'pinia'
 import { useBucketsStore } from '@stores'
 import FileManager from "@components/Bucket/FileManager.vue";
 import AddBucketButton from "@components/Bucket/Button/AddBucketButton.vue";
-import EmptyState from "@components/Bucket/EmptyState.vue";
+import NoBuckets from "@components/Bucket/EmptyStates/NoBuckets.vue";
 import ActivityButton from "@components/Bucket/Button/ActivityButton.vue";
 
 defineProps({
@@ -74,7 +74,7 @@ onMounted(() => {
 
   <AppLayout v-else>
     <div class="h-screen flex items-center justify-center">
-      <EmptyState />
+      <NoBuckets />
     </div>
   </AppLayout>
 </template>
