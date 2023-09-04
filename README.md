@@ -32,6 +32,8 @@ soketi start
 ## Todo
 - [x] add new folder
 - [ ] drag and move to folder
+- [ ] update file visibility
+- [ ] view file details
 
 ## Credits
 - All Contributors
