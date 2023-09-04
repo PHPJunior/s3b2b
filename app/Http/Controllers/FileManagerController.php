@@ -7,6 +7,7 @@ use App\Models\Bucket;
 use App\Services\BucketService;
 use App\Services\FileManagerService;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FileManagerController extends Controller
 {
@@ -107,5 +108,31 @@ class FileManagerController extends Controller
             $destinationPath,
             $request->get('keepFile', false)
         );
+    }
+
+    /**
+     * @param Request $request
+     * @param Bucket $bucket
+     * @return void
+     */
+    public function setVisibility(Request $request, Bucket $bucket): void
+    {
+        $path = $request->get('path');
+        $visibility = $request->get('visibility');
+
+        $bucketDisk = $this->bucketService->getBucketDiskById($bucket->getKey());
+        $this->service->setDisk($bucketDisk)->changeFileVisibility($path, $visibility);
+    }
+
+    /**
+     * @param Request $request
+     * @param Bucket $bucket
+     * @return StreamedResponse
+     */
+    public function download(Request $request, Bucket $bucket)
+    {
+        $path = $request->get('path');
+        $bucketDisk = $this->bucketService->getBucketDiskById($bucket->getKey());
+        return $this->service->setDisk($bucketDisk)->downloadFile($path);
     }
 }

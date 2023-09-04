@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FileManagerService
 {
@@ -113,14 +114,16 @@ class FileManagerService
     {
         $path = '/' . ltrim($path, '/');
         $pathInfo = $this->getPathInfo($path);
+
         return [
             'name' => $pathInfo->get('basename'),
             'path' => $path,
+            'preview_url' => $this->disk->temporaryUrl($path, now()->addHour()),
             'size' => $this->disk->size($path),
             'url' => $this->disk->url($path),
             'mime' => $this->disk->mimeType($path),
             'modified' => Carbon::createFromTimestamp($this->disk->lastModified($path)),
-            'permissions' => $this->disk->getVisibility($path),
+            'visibility' => $this->disk->getVisibility($path),
             'extension' => $pathInfo->get('extension'),
         ];
     }
@@ -193,6 +196,27 @@ class FileManagerService
         }
 
         return $this->disk->move($path, $newName);
+    }
+
+    /**
+     * @param mixed $path
+     * @param string $visibility
+     * @return bool
+     */
+    public function changeFileVisibility(mixed $path, string $visibility): bool
+    {
+        $path = $this->cleanFolder($path);
+        return $this->disk->setVisibility($path, $visibility);
+    }
+
+    /**
+     * @param mixed $path
+     * @return StreamedResponse
+     */
+    public function downloadFile(mixed $path): StreamedResponse
+    {
+        $path = $this->cleanFolder($path);
+        return $this->disk->download($path);
     }
 
     /**

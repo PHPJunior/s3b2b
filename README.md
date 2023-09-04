@@ -32,8 +32,9 @@ soketi start
 ## Todo
 - [x] add new folder
 - [ ] drag and move to folder
-- [ ] update file visibility
-- [ ] view file details
+- [x] update file visibility
+- [x] view file details
+- [ ] file multi select
 
 ## Credits
 - All Contributors
