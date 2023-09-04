@@ -1,13 +1,14 @@
 <script setup>
 import moment from "moment";
-import { DocumentIcon, VideoCameraIcon, PhotoIcon, ExclamationCircleIcon } from '@heroicons/vue/24/outline'
+import { DocumentIcon, VideoCameraIcon, PhotoIcon, ExclamationCircleIcon, LockOpenIcon, LockClosedIcon } from '@heroicons/vue/24/outline'
 import OptionMenu from "@components/Bucket/Partials/OptionMenu.vue";
-import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { ref, defineEmits } from "vue";
+import {Dialog, DialogPanel, DialogTitle, Switch, TransitionChild, TransitionRoot} from '@headlessui/vue'
+import {ref, defineEmits, watch} from "vue";
 import {router} from "@inertiajs/vue3";
 import route from "ziggy-js";
 import DeleteModal from "@components/Bucket/Modals/DeleteModal.vue";
 import FileMoveModal from "@components/Bucket/Modals/FileMoveModal.vue";
+import SlideOver from "@components/UI/SlideOver.vue";
 
 const props = defineProps({
   file: {
@@ -89,9 +90,35 @@ const update = () => {
   })
 }
 
+const viewFileDetails = ref(false)
+const visibility = ref(props.file.visibility === 'public')
+
+watch(() => visibility.value, (value) => {
+  const url = route('buckets.visibility', {
+    bucket: props.bucket.id
+  })
+
+  router.post(url, {
+    visibility: value ? 'public' : 'private',
+    path: props.file.name,
+  }, {
+    preserveState: true,
+    preserveScroll: true,
+  })
+})
+
+const download = () => {
+  const url = route('buckets.download', {
+    bucket: props.bucket.id,
+    path: props.file.path,
+  })
+
+  window.open(url, '_blank')
+}
 </script>
 
 <template>
+  <!-- File Move Modal -->
   <FileMoveModal
     :open="openFileMoveModal"
     :current-bucket="props.bucket.id"
@@ -101,6 +128,7 @@ const update = () => {
     @moved="emit('moved')"
   />
 
+  <!-- File Move Modal -->
   <DeleteModal
     :open="openDeleteModal"
     :delete-url="route('buckets.files.delete', {
@@ -132,6 +160,108 @@ const update = () => {
       </div>
     </div>
   </DeleteModal>
+
+  <!-- File Information Slide -->
+  <SlideOver
+    :show="viewFileDetails"
+    @close="viewFileDetails = false"
+  >
+    <div class="flex h-full flex-col justify-between bg-white shadow-xl px-4 py-6 sm:px-6 ">
+      <div class="space-y-6">
+        <div>
+          <div class="aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg">
+            <img
+              v-if="photoExtensions.includes(file.extension)"
+              :src="file.preview_url"
+              :alt="file.name"
+              class="object-cover"
+            >
+
+            <video
+              v-else-if="videoExtensions.includes(file.extension)"
+              :src="file.preview_url"
+              class="object-cover"
+              controls
+            />
+
+            <div
+              v-else
+              class="bg-gray-500 p-10"
+            >
+              <DocumentIcon class="object-cover text-white" />
+            </div>
+          </div>
+          <div class="mt-4 flex items-start justify-between">
+            <div>
+              <h2 class="text-lg font-medium text-gray-900">
+                <span class="sr-only">Details for </span>
+                {{ file.name }}
+              </h2>
+              <p class="text-sm font-medium text-gray-500">
+                {{ formatBytes(file.size) }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="font-medium text-gray-900">
+            {{ $t('file_manager.file.information') }}
+          </h3>
+          <dl class="mt-2 divide-y divide-gray-200 border-b border-t border-gray-200">
+            <div class="flex justify-between py-3 text-sm font-medium">
+              <dt class="text-gray-500">
+                {{ $t('file_manager.file.last_modified') }}
+              </dt>
+              <dd class="whitespace-nowrap text-gray-900">
+                {{ moment(file.modified).fromNow() }}
+              </dd>
+            </div>
+            <div class="flex justify-between py-3 text-sm font-medium">
+              <dt class="text-gray-500">
+                {{ $t('file_manager.file.file_visibility') }}
+              </dt>
+              <dd
+                class="whitespace-nowrap text-gray-900 "
+              >
+                <Switch
+                  v-model="visibility"
+                  :class="[visibility ? 'bg-green-500' : 'bg-rose-500', 'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-slate-600 focus:ring-offset-2']"
+                >
+                  <span
+                    aria-hidden="true"
+                    :class="[visibility ? 'translate-x-5' : 'translate-x-0','pointer-events-none inline-block h-5 w-5 transform rounded bg-white shadow ring-0 transition duration-200 ease-in-out']"
+                  >
+                    <span
+                      :class="[visibility ? 'opacity-0 duration-100 ease-out' : 'opacity-100 duration-200 ease-in', 'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity']"
+                      aria-hidden="true"
+                    >
+                      <LockClosedIcon class="h-4 w-4 text-gray-500" />
+                    </span>
+                    <span
+                      :class="[visibility ? 'opacity-100 duration-200 ease-in' : 'opacity-0 duration-100 ease-out', 'absolute inset-0 flex h-full w-full items-center justify-center transition-opacity']"
+                      aria-hidden="true"
+                    >
+                      <LockOpenIcon class="h-4 w-4 text-gray-500" />
+                    </span>
+                  </span>
+                </Switch>
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="button"
+          class="w-full flex justify-center items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+          @click="download"
+        >
+          {{ $t('buttons.download') }}
+        </button>
+      </div>
+    </div>
+  </SlideOver>
 
   <div class="flex flex-col space-y-3 cursor-pointer justify-between rounded-md text-gray-500 ring-1 ring-inset ring-gray-500/10 hover:shadow-md p-3">
     <div class="flex gap-3">
@@ -167,6 +297,7 @@ const update = () => {
           @move="openFileMoveModal = true"
           @delete="openDeleteModal = true"
           @edit="edit = true"
+          @view="viewFileDetails = true"
         />
       </div>
     </div>

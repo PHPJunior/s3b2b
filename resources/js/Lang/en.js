@@ -10,6 +10,13 @@ export default {
         'title': 'New Folder',
         'description': 'Fill in the form below to create a new folder.',
       }
+    },
+    'file': {
+      'information': 'Information',
+      'last_modified': 'Last Modified',
+      'file_size': 'File Size',
+      'mime_type': 'Mime Type',
+      'file_visibility': 'File Visibility'
     }
   },
   'activity': {
@@ -51,6 +58,7 @@ export default {
     'upload': 'Upload',
     'move': 'Move',
     'new_folder': 'New Folder',
+    'download': 'Download'
   },
   'plural': {
     'items': 'Item | Items',
@@ -64,5 +72,12 @@ export default {
     'delete_folder': 'You are about to delete the following folder, this cannot be undone:',
     'delete_file': 'You are about to delete the following file, this cannot be undone:',
     'delete_bucket': 'You are about to delete the following bucket, this cannot be undone:',
+  },
+  'menus': {
+    'view': 'View',
+    'edit': 'Edit',
+    'delete': 'Delete',
+    'move': 'Move',
+    'upload': 'Upload'
   }
 }
