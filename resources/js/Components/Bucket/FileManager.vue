@@ -296,6 +296,7 @@ onMounted(() => {
           class="pt-2"
           hide-move
           hide-upload
+          hide-view
           @edit="showBucketEditForm = true"
           @delete="openBucketDeleteModal = true"
         />

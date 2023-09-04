@@ -1,8 +1,8 @@
 <script setup>
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
-import { EllipsisVerticalIcon, FolderIcon, TrashIcon, PencilSquareIcon, CloudArrowUpIcon } from '@heroicons/vue/20/solid'
+import { EllipsisVerticalIcon, FolderIcon, TrashIcon, PencilSquareIcon, CloudArrowUpIcon, EyeIcon } from '@heroicons/vue/20/solid'
 
-const emit = defineEmits(['move', 'delete', 'edit', 'upload'])
+const emit = defineEmits(['move', 'delete', 'edit', 'upload', 'view'])
 
 defineProps({
   hideEdit: {
@@ -18,6 +18,10 @@ defineProps({
     default: false,
   },
   hideUpload: {
+    type: Boolean,
+    default: false,
+  },
+  hideView: {
     type: Boolean,
     default: false,
   },
@@ -65,7 +69,9 @@ defineProps({
                 class="mr-3 h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-              <span>Move</span>
+              <span>
+                {{ $t('menus.move') }}
+              </span>
             </a>
           </MenuItem>
           <MenuItem
@@ -81,7 +87,9 @@ defineProps({
                 class="mr-3 h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-              <span>Upload</span>
+              <span>
+                {{ $t('menus.upload') }}
+              </span>
             </a>
           </MenuItem>
           <MenuItem
@@ -97,7 +105,9 @@ defineProps({
                 class="mr-3 h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-              <span>Edit</span>
+              <span>
+                {{ $t('menus.edit') }}
+              </span>
             </a>
           </MenuItem>
           <MenuItem
@@ -113,7 +123,27 @@ defineProps({
                 class="mr-3 h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-              <span>Delete</span>
+              <span>
+                {{ $t('menus.delete') }}
+              </span>
+            </a>
+          </MenuItem>
+          <MenuItem
+            v-if="!hideView"
+            v-slot="{ active }"
+          >
+            <a
+              href="#"
+              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm']"
+              @click="emit('view')"
+            >
+              <EyeIcon
+                class="mr-3 h-5 w-5 text-gray-400"
+                aria-hidden="true"
+              />
+              <span>
+                {{ $t('menus.view') }}
+              </span>
             </a>
           </MenuItem>
         </div>

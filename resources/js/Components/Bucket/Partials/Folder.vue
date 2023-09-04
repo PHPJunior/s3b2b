@@ -98,6 +98,7 @@ const openFileMoveModal = ref(false)
         <OptionMenu
           hide-upload
           hide-edit
+          hide-view
           @delete="openDeleteModal = true"
           @move="openFileMoveModal = true"
         />
