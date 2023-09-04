@@ -42,7 +42,7 @@ class FileMoveService
      */
     public function moveFile(string $path, string $destinationPath, bool $keepFile = true): void
     {
-        $destinationPath = $this->cleanFolder($destinationPath. '/' . basename($path));
+        $destinationPath = $this->cleanFolder($destinationPath. '/' . $path);
 
         FileMovingEvent::dispatch([
             'fileName' => basename($path),
