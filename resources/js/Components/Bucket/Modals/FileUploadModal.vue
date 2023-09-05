@@ -1,7 +1,6 @@
 <script setup>
 import { Dashboard } from '@uppy/vue';
 import Uppy from '@uppy/core';
-import XHR from '@uppy/xhr-upload';
 import Tus from '@uppy/tus';
 import '@uppy/core/dist/style.css';
 import '@uppy/dashboard/dist/style.css';
