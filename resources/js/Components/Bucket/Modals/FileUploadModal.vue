@@ -2,6 +2,7 @@
 import { Dashboard } from '@uppy/vue';
 import Uppy from '@uppy/core';
 import XHR from '@uppy/xhr-upload';
+import Tus from '@uppy/tus';
 import '@uppy/core/dist/style.css';
 import '@uppy/dashboard/dist/style.css';
 
@@ -16,16 +17,30 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  bucketId: {
+    type: Number,
+    default: 0,
+  },
+  path: {
+    type: String,
+    default: '',
+  },
 })
 
-const uppy = new Uppy().use(XHR, {
+const uppy = new Uppy().use(Tus, {
   endpoint: props.uploadUrl,
-  fieldName: 'file'
+  retryDelays: [0, 1000, 3000, 5000],
+  chunkSize: 2000000,
+  async onBeforeRequest (req) {
+    req.setHeader('X-Bucket-Id', props.bucketId)
+    req.setHeader('X-Current-Path', props.path)
+  },
+  removeFingerprintOnSuccess: true
 });
 
 const emit = defineEmits(['close', 'uploaded'])
 
-uppy.on('upload-success', (result) => {
+uppy.on('complete', (result) => {
   emit('uploaded')
 })
 
@@ -67,7 +82,6 @@ uppy.on('upload-success', (result) => {
             <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md p-2">
               <Dashboard
                 :uppy="uppy"
-                :plugins="['XHR']"
                 :props="{
                   proudlyDisplayPoweredByUppy: false,
                   height: 470,

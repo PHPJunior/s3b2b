@@ -155,10 +155,9 @@ onMounted(() => {
   <FileUploadModal
     v-if="!loading"
     :open="openFileUploadModal"
-    :upload-url="route('buckets.files.upload', {
-      bucket: props.bucket.id,
-      path: storage.current.path,
-    })"
+    :upload-url="route('tus.url')"
+    :bucket-id="bucket.id"
+    :path="storage.current.path"
     @uploaded="loadData(storage.current.path)"
     @close="openFileUploadModal = false"
   />

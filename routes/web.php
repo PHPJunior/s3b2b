@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'App/Index');
 
+Route::any('/tus/{any?}', function () {
+    return app('tus-server')->send();
+})->where('any', '.*')
+    ->name('tus.url');
+
 Route::group(['prefix' => 'api'], function () {
     Route::apiResource('buckets', BucketController::class);
 
