@@ -7,7 +7,7 @@
 
 ## S3B2B
 
-S2B2B is a simple S3 file manager. It can manage multiple file storage at the same time and can also easily move files from one S3 bucket to another S3 bucket.
+S3B2B is a simple S3 file manager. It can manage multiple file storage at the same time and can also easily move files from one S3 bucket to another S3 bucket.
 
 ## Requirements
 
