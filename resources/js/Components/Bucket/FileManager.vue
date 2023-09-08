@@ -14,7 +14,8 @@ import FileUploadModal from "@components/Bucket/Modals/FileUploadModal.vue";
 import {
   CloudArrowUpIcon,
   HomeIcon,
-  FolderPlusIcon
+  FolderPlusIcon,
+  ArrowPathIcon
 } from "@heroicons/vue/20/solid/index.js";
 import NewFolderModal from "@components/Bucket/Modals/NewFolderModal.vue";
 
@@ -335,10 +336,20 @@ onMounted(() => {
   <portal to="fab">
     <!-- Menu -->
     <div
-      v-if="!hideMenu"
       class="flex gap-2 items-center divide-x"
     >
       <div
+        v-if="loading"
+        :class="['text-gray-700', 'px-3 py-2.5 leading-6 text-sm', 'cursor-pointer', 'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50']"
+      >
+        <ArrowPathIcon
+          class="h-5 w-5 text-gray-700 animate-spin"
+          aria-hidden="true"
+        />
+      </div>
+
+      <div
+        v-if="!hideMenu"
         :class="['flex items-center', 'text-gray-700', 'px-3 py-2 leading-6 text-sm', 'cursor-pointer', 'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50']"
         @click="openNewFolderModal = true"
       >
@@ -350,6 +361,7 @@ onMounted(() => {
       </div>
 
       <div
+        v-if="!hideMenu"
         :class="['flex items-center', 'text-gray-700', 'px-3 py-2 leading-6 text-sm', 'cursor-pointer', 'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50']"
         title="Upload"
         @click="openFileUploadModal = true"
