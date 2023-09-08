@@ -6,6 +6,7 @@ import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import { createI18n } from "vue-i18n";
 import { createPinia } from 'pinia';
+import PortalVue from 'portal-vue'
 
 createInertiaApp({
   resolve: name => {
@@ -27,6 +28,7 @@ createInertiaApp({
       .use(plugin)
       .use(i18n)
       .use(pinia)
+      .use(PortalVue)
       .mount(el)
   },
 })

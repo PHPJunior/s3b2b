@@ -265,32 +265,6 @@ onMounted(() => {
         v-if="!hideMenu"
         class="px-5 flex gap-3 items-center divide-x"
       >
-        <div
-          :class="['text-gray-700', 'flex px-2 py-2 text-sm', 'cursor-pointer']"
-          @click="openNewFolderModal = true"
-        >
-          <FolderPlusIcon
-            class="mr-1.5 h-5 w-5 text-gray-400"
-            aria-hidden="true"
-          />
-          <span>
-            {{ $t('buttons.new_folder') }}
-          </span>
-        </div>
-
-        <div
-          :class="['text-gray-700', 'flex px-2 py-2 text-sm', 'cursor-pointer']"
-          @click="openFileUploadModal = true"
-        >
-          <CloudArrowUpIcon
-            class="mr-1.5 h-5 w-5 text-gray-400"
-            aria-hidden="true"
-          />
-          <span>
-            {{ $t('buttons.upload') }}
-          </span>
-        </div>
-
         <OptionMenu
           class="pt-2"
           hide-move
@@ -357,6 +331,37 @@ onMounted(() => {
       </div>
     </div>
   </div>
+
+  <portal to="fab">
+    <!-- Menu -->
+    <div
+      v-if="!hideMenu"
+      class="flex gap-2 items-center divide-x"
+    >
+      <div
+        :class="['flex items-center', 'text-gray-700', 'px-3 py-2 leading-6 text-sm', 'cursor-pointer', 'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50']"
+        @click="openNewFolderModal = true"
+      >
+        <FolderPlusIcon
+          class="mr-1.5 h-5 w-5 text-gray-400"
+          aria-hidden="true"
+        />
+        <span>{{ $t('buttons.new_folder') }}</span>
+      </div>
+
+      <div
+        :class="['flex items-center', 'text-gray-700', 'px-3 py-2 leading-6 text-sm', 'cursor-pointer', 'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50']"
+        title="Upload"
+        @click="openFileUploadModal = true"
+      >
+        <CloudArrowUpIcon
+          class="mr-1.5 h-5 w-5 text-gray-400"
+          aria-hidden="true"
+        />
+        <span>{{ $t('buttons.upload') }}</span>
+      </div>
+    </div>
+  </portal>
 </template>
 
 <style scoped>

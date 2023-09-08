@@ -45,7 +45,7 @@ onMounted(() => {
 <template>
   <button
     type="button"
-    class="inline-flex items-center px-2 py-1.5 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150"
+    class="inline-flex items-center px-3 py-1.5 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150"
     @click="showActivity = true"
   >
     <span
@@ -75,9 +75,10 @@ onMounted(() => {
       Moving...
     </span>
 
-    <span v-else>
-      <InboxIcon class="h-5 w-5 text-white" />
-    </span>
+    <InboxIcon
+      v-else
+      class="h-5 w-5 text-white"
+    />
   </button>
 
   <SlideOver

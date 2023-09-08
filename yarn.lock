@@ -2977,6 +2977,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"portal-vue@npm:next":
+  version: 3.0.0-beta.0
+  resolution: "portal-vue@npm:3.0.0-beta.0"
+  peerDependencies:
+    vue: ^3.0.4
+  checksum: fd6dfc8f339ec2bb55a798a00805a390ff632e77bda87ebd02c8dd4c5c2839cf14fc31bf4191fc75a12e53d9c1bd039bd7e5bdbb1a621f76dcfed922389a8e2c
+  languageName: node
+  linkType: hard
+
 "postcss-import@npm:^15.1.0":
   version: 15.1.0
   resolution: "postcss-import@npm:15.1.0"
@@ -3280,6 +3289,7 @@ __metadata:
     laravel-vite-plugin: ^0.8.0
     moment: ^2.29.4
     pinia: ^2.1.6
+    portal-vue: next
     postcss: ^8.4.28
     pusher-js: ^8.3.0
     sass: ^1.66.1

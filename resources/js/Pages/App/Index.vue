@@ -68,7 +68,10 @@ onMounted(() => {
 
     <!-- Activity Button -->
     <div class="fixed bottom-3 right-3">
-      <ActivityButton />
+      <div class="flex gap-2">
+        <portal-target name="fab" />
+        <ActivityButton />
+      </div>
     </div>
   </AppLayout>
 
