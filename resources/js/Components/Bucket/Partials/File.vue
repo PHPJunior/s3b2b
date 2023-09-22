@@ -100,7 +100,7 @@ watch(() => visibility.value, (value) => {
 
   router.post(url, {
     visibility: value ? 'public' : 'private',
-    path: props.file.name,
+    path: props.file.path,
   }, {
     preserveState: true,
     preserveScroll: true,
