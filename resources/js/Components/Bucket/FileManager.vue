@@ -192,7 +192,7 @@ onMounted(() => {
               @click="loadData('/')"
             >
               <div>
-                <span class="text-gray-400 hover:text-gray-500 cursor-pointer">
+                <span class="text-gray-400 hover:text-gray-500 cursor-pointer dark:hover:text-white">
                   <HomeIcon
                     class="h-5 w-5 flex-shrink-0"
                     aria-hidden="true"
@@ -208,7 +208,7 @@ onMounted(() => {
             >
               <div v-if="breadcrumb.name === 'root'">
                 <span
-                  class="text-gray-400 hover:text-gray-500 cursor-pointer"
+                  class="text-gray-400 hover:text-gray-500 cursor-pointer dark:hover:text-white"
                   @click="loadData(breadcrumb.path)"
                 >
                   <HomeIcon
@@ -231,7 +231,7 @@ onMounted(() => {
                   <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
                 </svg>
                 <span
-                  class="ml-1 text-sm font-medium text-gray-500 hover:text-gray-700 cursor-pointer"
+                  class="ml-1 text-sm font-medium text-gray-500 hover:text-gray-700 cursor-pointer dark:hover:text-white"
                   @click="loadData(breadcrumb.path)"
                 >
                   {{ breadcrumb.name }}
@@ -250,7 +250,7 @@ onMounted(() => {
                 </svg>
                 <span
                   v-if="storage.current.path !== '/'"
-                  class="ml-1 text-sm font-medium text-gray-500 hover:text-gray-700 cursor-pointer"
+                  class="ml-1 text-sm font-medium text-gray-500 hover:text-gray-700 cursor-pointer dark:hover:text-white"
                   @click="loadData(storage.current.path)"
                 >
                   {{ storage.current.name }}
@@ -340,7 +340,12 @@ onMounted(() => {
     >
       <div
         v-if="loading"
-        :class="['text-gray-700', 'px-3 py-2.5 leading-6 text-sm', 'cursor-pointer', 'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50']"
+        :class="[
+          'text-gray-700',
+          'px-3 py-2.5 leading-6 text-sm',
+          'cursor-pointer',
+          'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
+          ]"
       >
         <ArrowPathIcon
           class="h-5 w-5 text-gray-700 animate-spin"
