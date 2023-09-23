@@ -59,26 +59,27 @@ defineProps({
       leave-to-class="transform opacity-0 scale-95"
     >
       <MenuItems
-        class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+        class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white dark:bg-slate-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         :class="{
           '-top-4 transform -translate-y-full': position === 'top',
         }"
       >
-        <div class="divide-y divide-gray-200">
+        <div class="divide-y divide-gray-200 dark:divide-white/5">
           <MenuItem
             v-if="!hideMove"
             v-slot="{ active }"
+            class="rounded-t-md"
           >
             <a
               href="#"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm']"
+              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
               @click="emit('move')"
             >
               <FolderIcon
                 class="mr-3 h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-              <span>
+              <span class="dark:text-white">
                 {{ $t('menus.move') }}
               </span>
             </a>
@@ -89,14 +90,14 @@ defineProps({
           >
             <a
               href="#"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm']"
+              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
               @click="emit('upload')"
             >
               <CloudArrowUpIcon
                 class="mr-3 h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-              <span>
+              <span class="dark:text-white">
                 {{ $t('menus.upload') }}
               </span>
             </a>
@@ -107,14 +108,14 @@ defineProps({
           >
             <a
               href="#"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm']"
+              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
               @click="emit('edit')"
             >
               <PencilSquareIcon
                 class="mr-3 h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-              <span>
+              <span class="dark:text-white">
                 {{ $t('menus.edit') }}
               </span>
             </a>
@@ -125,14 +126,14 @@ defineProps({
           >
             <a
               href="#"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm']"
+              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
               @click="emit('delete')"
             >
               <TrashIcon
                 class="mr-3 h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-              <span>
+              <span class="dark:text-white">
                 {{ $t('menus.delete') }}
               </span>
             </a>
@@ -140,17 +141,18 @@ defineProps({
           <MenuItem
             v-if="!hideView"
             v-slot="{ active }"
+            class="rounded-b-md"
           >
             <a
               href="#"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm']"
+              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
               @click="emit('view')"
             >
               <EyeIcon
                 class="mr-3 h-5 w-5 text-gray-400"
                 aria-hidden="true"
               />
-              <span>
+              <span class="dark:text-white">
                 {{ $t('menus.view') }}
               </span>
             </a>

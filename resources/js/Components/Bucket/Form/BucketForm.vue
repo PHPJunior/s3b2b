@@ -68,7 +68,7 @@ const submit = () => {
 
 <template>
   <form
-    class="flex h-full flex-col divide-y divide-gray-200 bg-white shadow-xl"
+    class="flex h-full flex-col divide-y divide-gray-200 dark:divide-white/5 bg-white dark:bg-slate-800 shadow-xl"
     @submit.prevent="submit"
   >
     <div class="h-0 flex-1 overflow-y-auto">
@@ -164,7 +164,7 @@ const submit = () => {
     <div class="flex flex-shrink-0 justify-end px-4 py-4">
       <button
         type="button"
-        class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+        class="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:ring-0"
         @click="close"
       >
         {{ $t('buttons.cancel') }}

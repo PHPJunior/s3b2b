@@ -55,7 +55,7 @@ const emit = defineEmits(['update:modelValue']);
     <div class="flex justify-between">
       <label
         :for="id"
-        class="block text-sm font-medium leading-6 text-gray-900"
+        class="block text-sm font-medium leading-6 text-gray-900 dark:text-white"
       >
         {{ label }}
       </label>
@@ -71,7 +71,7 @@ const emit = defineEmits(['update:modelValue']);
       <input
         :id="id"
         :type="type"
-        class="block w-full rounded-md border-0 py-1.5 pl-2 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6"
+        class="block w-full rounded-md border-0 py-1.5 pl-2 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 bg-transparent dark:ring-white/10 dark:text-white dark:placeholder-white/50"
         :placeholder="placeholder"
         :aria-describedby="`${id}-optional`"
         :value="modelValue"
@@ -80,7 +80,7 @@ const emit = defineEmits(['update:modelValue']);
         :class="[
           error ? 'text-red-900 ring-red-300 placeholder:text-red-300 focus:ring-red-500' : 'text-gray-900 ring-gray-300 placeholder:text-gray-300 focus:ring-indigo-500',
           disabled ? 'bg-gray-50 text-gray-500 cursor-not-allowed' : '',
-          readonly ? 'bg-gray-50 text-gray-500 cursor-not-allowed' : '',
+          readonly ? 'bg-gray-50 text-gray-500 cursor-not-allowed' : ''
         ]"
         @input="emit('update:modelValue', $event.target.value)"
       >

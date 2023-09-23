@@ -3,7 +3,7 @@ import Header from "@components/Header.vue";
 </script>
 
 <template>
-  <main>
+  <main class="bg-white dark:bg-slate-800">
     <slot />
   </main>
 </template>

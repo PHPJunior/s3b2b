@@ -175,8 +175,8 @@ onMounted(() => {
     @close="openNewFolderModal = false"
   />
 
-  <div class="bg-white relative">
-    <div class="flex gap-3 items-center justify-between sticky top-0 bg-gray-100 divided-x">
+  <div class="bg-white dark:bg-slate-800 relative">
+    <div class="flex gap-3 items-center justify-between sticky top-0 bg-gray-100 divided-x dark:bg-slate-700">
       <!-- Breadcrumbs -->
       <div class="px-5 py-3 overflow-x-auto">
         <nav
@@ -285,7 +285,7 @@ onMounted(() => {
         v-if="storage.folders.length"
         class="space-y-2"
       >
-        <span class="font-semibold text-md">
+        <span class="font-semibold text-md dark:text-white">
           {{ $t('file_manager.folders') }}
         </span>
         <div :class="['grid gap-2', folderCols]">
@@ -310,7 +310,7 @@ onMounted(() => {
         v-if="storage.files.length"
         class="space-y-2"
       >
-        <span class="font-semibold text-md">
+        <span class="font-semibold text-md dark:text-white">
           {{ $t('file_manager.files') }}
         </span>
         <div :class="['grid gap-2', fileCols]">
@@ -336,7 +336,7 @@ onMounted(() => {
   <portal to="fab">
     <!-- Menu -->
     <div
-      class="flex gap-2 items-center divide-x"
+      class="flex gap-2 items-center"
     >
       <div
         v-if="loading"
@@ -350,7 +350,14 @@ onMounted(() => {
 
       <div
         v-if="!hideMenu"
-        :class="['flex items-center', 'text-gray-700', 'px-3 py-2 leading-6 text-sm', 'cursor-pointer', 'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50']"
+        :class="[
+          'flex items-center',
+          'text-gray-700',
+          'px-3 py-2 leading-6 text-sm',
+          'cursor-pointer',
+          'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50',
+          'dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:ring-0'
+        ]"
         @click="openNewFolderModal = true"
       >
         <FolderPlusIcon
@@ -362,7 +369,14 @@ onMounted(() => {
 
       <div
         v-if="!hideMenu"
-        :class="['flex items-center', 'text-gray-700', 'px-3 py-2 leading-6 text-sm', 'cursor-pointer', 'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50']"
+        :class="[
+          'flex items-center',
+          'text-gray-700',
+          'px-3 py-2 leading-6 text-sm',
+          'cursor-pointer',
+          'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50',
+          'dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:ring-0'
+        ]"
         title="Upload"
         @click="openFileUploadModal = true"
       >

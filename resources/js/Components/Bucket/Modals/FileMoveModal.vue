@@ -102,12 +102,12 @@ const moveFile = () => {
             leave-from="opacity-100 translate-y-0 sm:scale-100"
             leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-3xl">
-              <div class="bg-white p-4 ">
+            <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-3xl">
+              <div class="bg-white dark:bg-slate-800 p-4 ">
                 <div class="text-center sm:text-left">
                   <DialogTitle
                     as="h3"
-                    class="text-base leading-6 text-gray-700"
+                    class="text-base leading-6 text-gray-700 dark:text-gray-500"
                   >
                     {{ $t('buckets.move') }} <span class="font-extrabold">{{ currentName }}</span>
                   </DialogTitle>
@@ -126,11 +126,11 @@ const moveFile = () => {
                       as="div"
                     >
                       <div class="relative mt-2">
-                        <ListboxButton class="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <ListboxButton class="relative w-full cursor-default rounded-md bg-white dark:bg-slate-700 py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
                           <span class="absolute inset-y-0 left-0 flex items-center px-2">
                             <ArchiveBoxIcon class="h-5 w-5 text-gray-400" />
                           </span>
-                          <span class="ml-6 block truncate">{{ selectedBucket.name }}</span>
+                          <span class="ml-6 block truncate dark:text-gray-400">{{ selectedBucket.name }}</span>
                           <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                             <ChevronUpDownIcon
                               class="h-5 w-5 text-gray-400"
@@ -144,7 +144,7 @@ const moveFile = () => {
                           leave-from-class="opacity-100"
                           leave-to-class="opacity-0"
                         >
-                          <ListboxOptions class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                          <ListboxOptions class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white dark:bg-slate-700 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                             <ListboxOption
                               v-for="bucket in bucketOptions"
                               :key="bucket.id"
@@ -152,8 +152,8 @@ const moveFile = () => {
                               as="template"
                               :value="bucket"
                             >
-                              <li :class="[active ? 'bg-indigo-600 text-white' : 'text-gray-900', 'relative cursor-default select-none py-2 pl-8 pr-4']">
-                                <span :class="[selectedBucket ? 'font-semibold' : 'font-normal', 'block truncate']">{{ bucket.name }}</span>
+                              <li :class="[active ? 'bg-indigo-600 dark:bg-slate-500 text-white' : 'text-gray-900', 'relative cursor-default select-none py-2 pl-8 pr-4', 'dark:hover:bg-slate-500']">
+                                <span :class="[selectedBucket ? 'font-semibold' : 'font-normal', 'block truncate', 'dark:text-gray-400']">{{ bucket.name }}</span>
 
                                 <span
                                   v-if="selectedBucket"
@@ -185,7 +185,7 @@ const moveFile = () => {
                 </div>
               </div>
 
-              <div class="bg-gray-50 px-4 py-3 flex gap-3 justify-between items-center">
+              <div class="bg-gray-50 dark:bg-slate-700 px-4 py-3 flex gap-3 justify-between items-center">
                 <div>
                   <label
                     for="keep-file"
@@ -197,7 +197,7 @@ const moveFile = () => {
                       type="checkbox"
                       class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     >
-                    <span class="ml-2 text-sm text-gray-500">
+                    <span class="ml-2 text-sm text-gray-500 dark:text-white">
                       {{ $t('buckets.keep_file') }}
                     </span>
                   </label>
@@ -213,7 +213,7 @@ const moveFile = () => {
                   <button
                     ref="cancelButtonRef"
                     type="button"
-                    class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                    class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-5 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:ring-0"
                     @click="emit('close')"
                   >
                     {{ $t('buttons.cancel') }}

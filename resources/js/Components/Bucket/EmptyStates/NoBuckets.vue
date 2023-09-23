@@ -18,16 +18,14 @@ import AddBucketButton from "@components/Bucket/Button/AddBucketButton.vue";
         d="M8 14v20c0 4.418 7.163 8 16 8 1.381 0 2.721-.087 4-.252M8 14c0 4.418 7.163 8 16 8s16-3.582 16-8M8 14c0-4.418 7.163-8 16-8s16 3.582 16 8m0 0v14m0-4c0 4.418-7.163 8-16 8S8 28.418 8 24m32 10v6m0 0v6m0-6h6m-6 0h-6"
       />
     </svg>
-    <h3 class="mt-2 text-sm font-semibold text-gray-900">
+    <h3 class="mt-2 text-sm font-semibold text-gray-900 dark:text-white">
       {{ $t('empty_state.title') }}
     </h3>
     <p class="mt-1 text-sm text-gray-500">
       {{ $t('empty_state.description') }}
     </p>
     <div class="mt-6 flex justify-center">
-      <div class="w-fit ring-1 ring-inset ring-gray-500/20 rounded-md">
-        <AddBucketButton />
-      </div>
+      <AddBucketButton />
     </div>
   </div>
 </template>

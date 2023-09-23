@@ -166,10 +166,10 @@ const download = () => {
     :show="viewFileDetails"
     @close="viewFileDetails = false"
   >
-    <div class="flex h-full flex-col justify-between bg-white shadow-xl px-4 py-6 sm:px-6 ">
+    <div class="flex h-full flex-col justify-between bg-white dark:bg-slate-800 shadow-xl px-4 py-6 sm:px-6 ">
       <div class="space-y-6">
         <div>
-          <div class="aspect-h-7 aspect-w-10 block w-full overflow-hidden rounded-lg">
+          <div class="aspect-h-7 aspect-w-10 block w-full overflow-hidden">
             <img
               v-if="photoExtensions.includes(file.extension)"
               :src="file.preview_url"
@@ -193,7 +193,7 @@ const download = () => {
           </div>
           <div class="mt-4 flex items-start justify-between">
             <div>
-              <h2 class="text-lg font-medium text-gray-900">
+              <h2 class="text-lg font-medium text-gray-900 dark:text-white">
                 <span class="sr-only">Details for </span>
                 {{ file.name }}
               </h2>
@@ -204,15 +204,15 @@ const download = () => {
           </div>
         </div>
         <div>
-          <h3 class="font-medium text-gray-900">
+          <h3 class="font-medium text-gray-900 dark:text-white">
             {{ $t('file_manager.file.information') }}
           </h3>
-          <dl class="mt-2 divide-y divide-gray-200 border-b border-t border-gray-200">
+          <dl class="mt-2 divide-y divide-gray-200 dark:divide-white/5 border-b border-t border-gray-200 dark:border-white/5">
             <div class="flex justify-between py-3 text-sm font-medium">
               <dt class="text-gray-500">
                 {{ $t('file_manager.file.last_modified') }}
               </dt>
-              <dd class="whitespace-nowrap text-gray-900">
+              <dd class="whitespace-nowrap text-gray-900 dark:text-gray-500">
                 {{ moment(file.modified).fromNow() }}
               </dd>
             </div>

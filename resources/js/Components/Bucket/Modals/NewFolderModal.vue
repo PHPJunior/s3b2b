@@ -74,12 +74,12 @@ const submit = () => {
             leave-from="opacity-100 translate-y-0 sm:scale-100"
             leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md">
+            <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md">
               <div class="px-4 py-5">
-                <h3 class="text-base font-semibold leading-6 text-gray-900">
+                <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
                   {{ $t('file_manager.form.new_folder.title') }}
                 </h3>
-                <div class="mt-2 max-w-xl text-sm text-gray-500">
+                <div class="mt-2 max-w-xl text-sm text-gray-500 dark:text-gray-400">
                   <p>
                     {{ $t('file_manager.form.new_folder.description') }}
                   </p>
