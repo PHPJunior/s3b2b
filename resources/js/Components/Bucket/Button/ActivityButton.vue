@@ -66,7 +66,7 @@ onMounted(() => {
     :show="showActivity"
     @close="showActivity = false"
   >
-    <div class="flex h-full flex-col bg-white shadow-xl">
+    <div class="flex h-full flex-col bg-white dark:bg-slate-800 shadow-xl">
       <div class="h-0 flex-1 overflow-y-auto">
         <div class="bg-indigo-700 px-4 py-6 sm:px-6">
           <div class="flex items-center justify-between">
@@ -112,7 +112,7 @@ onMounted(() => {
                   <div>
                     <span
                       :class="[
-                        'h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white',
+                        'h-8 w-8 rounded-full flex items-center justify-center ring-1 ring-white dark:ring-white/10',
                         activity.status === 'moving' ? 'bg-indigo-500' : 'bg-green-500'
                       ]"
                     >
@@ -151,7 +151,7 @@ onMounted(() => {
                         {{ activity.fileName }}
                       </p>
                       <p class="text-xs text-gray-500">
-                        <span class="font-bold">{{ activity.data.from }}</span> to <span class="font-semibold">{{ activity.data.to }}</span>
+                        <span class="font-extrabold dark:text-white">{{ activity.data.from }}</span> to <span class="font-extrabold dark:text-white">{{ activity.data.to }}</span>
                       </p>
                     </div>
                   </div>
