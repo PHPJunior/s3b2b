@@ -2,7 +2,7 @@
 import moment from "moment";
 import { DocumentIcon, VideoCameraIcon, PhotoIcon, ExclamationCircleIcon, LockOpenIcon, LockClosedIcon } from '@heroicons/vue/24/outline'
 import OptionMenu from "@components/Bucket/Partials/OptionMenu.vue";
-import {Dialog, DialogPanel, DialogTitle, Switch, TransitionChild, TransitionRoot} from '@headlessui/vue'
+import { DialogTitle, Switch } from '@headlessui/vue'
 import {ref, defineEmits, watch} from "vue";
 import {router} from "@inertiajs/vue3";
 import route from "ziggy-js";
@@ -114,6 +114,10 @@ const download = () => {
   })
 
   window.open(url, '_blank')
+}
+
+const onDragStart = (event) => {
+  event.dataTransfer.setData('file', props.file.path)
 }
 </script>
 
@@ -263,7 +267,11 @@ const download = () => {
     </div>
   </SlideOver>
 
-  <div class="flex flex-col space-y-3 cursor-pointer justify-between rounded-md text-gray-500 ring-1 ring-inset ring-gray-500/10 hover:shadow-md p-3">
+  <div
+    draggable="true"
+    class="flex relative flex-col space-y-3 cursor-pointer justify-between rounded-md text-gray-500 ring-1 ring-inset ring-gray-500/10 hover:shadow-md p-3 bg-white dark:bg-slate-800"
+    @dragstart="onDragStart"
+  >
     <div class="flex gap-3">
       <div :class="['flex h-10 w-10 flex-none items-center justify-center rounded-lg', fileIcon(file.extension).color]">
         <component

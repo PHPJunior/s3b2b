@@ -313,7 +313,7 @@ onMounted(() => {
         <span class="font-semibold text-md dark:text-white">
           {{ $t('file_manager.files') }}
         </span>
-        <div :class="['grid gap-2', fileCols]">
+        <div :class="['grid gap-2 relative', fileCols]">
           <div
             v-for="(file, index) in storage.files"
             :key="index"
@@ -345,7 +345,7 @@ onMounted(() => {
           'px-3 py-2.5 leading-6 text-sm',
           'cursor-pointer',
           'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50'
-          ]"
+        ]"
       >
         <ArrowPathIcon
           class="h-5 w-5 text-gray-700 animate-spin"

@@ -31,7 +31,7 @@ soketi start
 ```
 ## Todo
 - [x] add new folder
-- [ ] drag and move to folder
+- [x] drag and move to folder
 - [x] update file visibility
 - [x] view file details
 - [ ] file multi select

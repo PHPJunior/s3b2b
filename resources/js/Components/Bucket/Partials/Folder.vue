@@ -7,6 +7,7 @@ import { useDropZone } from '@vueuse/core'
 import { DialogTitle } from "@headlessui/vue";
 import DeleteModal from "@components/Bucket/Modals/DeleteModal.vue";
 import FileMoveModal from "@components/Bucket/Modals/FileMoveModal.vue";
+import { router } from "@inertiajs/vue3";
 
 const props = defineProps({
   folder: {
@@ -26,12 +27,21 @@ const props = defineProps({
 const emit = defineEmits(['deleted', 'moved'])
 const dropZoneRef = ref(null)
 
-const onDrop = (files) => {
-  console.log(props.folder)
-  console.log(files)
+const onDrop = (files, event) => {
+  const url = route('buckets.files.move')
+  router.post(url, {
+    from: props.bucket.id,
+    to: props.bucket.id,
+    path: event.dataTransfer.getData('file'),
+    destinationPath: props.folder.path,
+    keepFile: false,
+  }, {
+    preserveState: true,
+    preserveScroll: true,
+  });
 }
 
-useDropZone(dropZoneRef, {
+const { isOverDropZone } = useDropZone(dropZoneRef, {
   onDrop,
 })
 
@@ -84,6 +94,9 @@ const openFileMoveModal = ref(false)
 
   <div
     ref="dropZoneRef"
+    :class="{
+      'ring-2 ring-teal-500/50': isOverDropZone,
+    }"
     class="flex flex-col justify-between p-3 cursor-pointer rounded-md text-gray-500 ring-1 ring-inset ring-gray-500/10 hover:shadow-md h-28"
   >
     <div class="flex justify-between">
