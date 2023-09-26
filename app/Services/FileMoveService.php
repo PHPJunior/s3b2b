@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Events\FileMovedEvent;
 use App\Events\FileMovingEvent;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Log;
 
 class FileMoveService
 {
@@ -42,7 +43,7 @@ class FileMoveService
      */
     public function moveFile(string $path, string $destinationPath, bool $keepFile = true): void
     {
-        $destinationPath = $this->cleanFolder($destinationPath. '/' . $path);
+        $destinationPath = $this->getPath($destinationPath, $path);
 
         FileMovingEvent::dispatch([
             'fileName' => basename($path),
@@ -61,5 +62,19 @@ class FileMoveService
         if (!$keepFile) {
             $this->fromDisk->delete($path);;
         }
+    }
+
+    private function getPath(string $destinationPath, string $path): string
+    {
+        if ($this->fromDisk->getConfig() == $this->toDisk->getConfig()) {
+            $destinationPath = explode('/', $destinationPath);
+            $path = explode('/', $path);
+
+            $mergedPath = array_merge($destinationPath, $path);
+
+            return $this->cleanFolder(implode('/', array_unique($mergedPath)));
+        }
+
+        return $this->cleanFolder($destinationPath. '/' . $path);
     }
 }
