@@ -6,6 +6,7 @@ use App\Http\Requests\CreateBucketRequest;
 use App\Http\Requests\UpdateBucketRequest;
 use App\Models\Bucket;
 use App\Services\BucketService;
+use Illuminate\Database\Eloquent\Collection;
 
 class BucketController extends Controller
 {
@@ -16,7 +17,7 @@ class BucketController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): Collection
     {
         return $this->service->index();
     }
@@ -26,23 +27,15 @@ class BucketController extends Controller
      *
      * @param CreateBucketRequest $request
      */
-    public function store(CreateBucketRequest $request)
+    public function store(CreateBucketRequest $request): void
     {
         $this->service->store($request);
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Bucket $bucket)
-    {
-        $this->service->findById($bucket->getKey());
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBucketRequest $request, Bucket $bucket)
+    public function update(UpdateBucketRequest $request, Bucket $bucket): void
     {
         $this->service->update($request, $bucket->getKey());
     }
@@ -50,7 +43,7 @@ class BucketController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Bucket $bucket)
+    public function destroy(Bucket $bucket): void
     {
         $this->service->destroy($bucket->getKey());
     }
