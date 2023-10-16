@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Events\FileMovedEvent;
 use App\Events\FileMovingEvent;
 use Illuminate\Contracts\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Log;
 
 class FileMoveService
 {

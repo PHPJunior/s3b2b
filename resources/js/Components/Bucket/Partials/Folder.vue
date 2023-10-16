@@ -1,7 +1,7 @@
 <script setup>
 import {ExclamationCircleIcon, FolderIcon} from "@heroicons/vue/24/outline/index.js";
 import OptionMenu from "@components/Bucket/Partials/OptionMenu.vue";
-import {ref, defineEmits} from "vue";
+import {ref} from "vue";
 import route from "ziggy-js";
 import { useDropZone } from '@vueuse/core'
 import { DialogTitle } from "@headlessui/vue";

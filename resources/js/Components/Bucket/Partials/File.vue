@@ -3,7 +3,7 @@ import moment from "moment";
 import { DocumentIcon, VideoCameraIcon, PhotoIcon, ExclamationCircleIcon, LockOpenIcon, LockClosedIcon } from '@heroicons/vue/24/outline'
 import OptionMenu from "@components/Bucket/Partials/OptionMenu.vue";
 import { DialogTitle, Switch } from '@headlessui/vue'
-import {ref, defineEmits, watch} from "vue";
+import {ref, watch} from "vue";
 import {router} from "@inertiajs/vue3";
 import route from "ziggy-js";
 import DeleteModal from "@components/Bucket/Modals/DeleteModal.vue";
