@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Events\FileMoveRequestedEvent;
+use App\Mail\ShareFiles;
 use App\Models\Bucket;
 use App\Services\BucketService;
 use App\Services\FileManagerService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class FileManagerController extends Controller
@@ -39,7 +42,7 @@ class FileManagerController extends Controller
      * @param Bucket $bucket
      * @return void
      */
-    public function deleteFile(Request $request, Bucket $bucket)
+    public function deleteFile(Request $request, Bucket $bucket): void
     {
         $path = $request->get('path');
         $bucketDisk = $this->bucketService->getBucketDiskById($bucket->getKey());
@@ -51,14 +54,19 @@ class FileManagerController extends Controller
      * @param Bucket $bucket
      * @return void
      */
-    public function deleteFolder(Request $request, Bucket $bucket)
+    public function deleteFolder(Request $request, Bucket $bucket): void
     {
         $path = $request->get('path');
         $bucketDisk = $this->bucketService->getBucketDiskById($bucket->getKey());
         $this->service->setDisk($bucketDisk)->deleteFolder($path);
     }
 
-    public function createFolder(Request $request, Bucket $bucket)
+    /**
+     * @param Request $request
+     * @param Bucket $bucket
+     * @return void
+     */
+    public function createFolder(Request $request, Bucket $bucket): void
     {
         $path = $request->get('path');
         $name = $request->get('name');
@@ -129,7 +137,7 @@ class FileManagerController extends Controller
      * @param Bucket $bucket
      * @return StreamedResponse
      */
-    public function download(Request $request, Bucket $bucket)
+    public function download(Request $request, Bucket $bucket): StreamedResponse
     {
         $path = $request->get('path');
         $bucketDisk = $this->bucketService->getBucketDiskById($bucket->getKey());

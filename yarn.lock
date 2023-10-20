@@ -1248,6 +1248,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"click-outside-vue3@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "click-outside-vue3@npm:4.0.1"
+  checksum: bc2cf3336f1343619f60c2e2d5a8cc7cc64ec5d912f42f9f3666c7655c08d77b9a8916a6b98ac505deeb2c11a40ffd58ce91308762e31989e546654b689d0b1e
+  languageName: node
+  linkType: hard
+
 "color-convert@npm:^2.0.1":
   version: 2.0.1
   resolution: "color-convert@npm:2.0.1"
@@ -3309,6 +3316,7 @@ __metadata:
     vite: ^4.0.0
     vue: ^3.3.4
     vue-i18n: ^9.2.2
+    vue3-tags-input: ^1.0.12
     ziggy-js: ^1.6.2
   languageName: unknown
   linkType: soft
@@ -3867,6 +3875,17 @@ __metadata:
   peerDependencies:
     vue: ^3.0.0
   checksum: 513b82d701674816d01ce085cbf4e21813bcfb65636dbef0f8df4ce94add272d49df8eca122863349dff0eb7046ab0379852386602dd752b48d16b2b2178c735
+  languageName: node
+  linkType: hard
+
+"vue3-tags-input@npm:^1.0.12":
+  version: 1.0.12
+  resolution: "vue3-tags-input@npm:1.0.12"
+  dependencies:
+    click-outside-vue3: ^4.0.1
+  peerDependencies:
+    vue: ^3.0.5
+  checksum: d26d757b621026022f0611851843e0757f79648b616451421c88d2c8a6d7b37c1b8840fd07ca1d88c5737947aa31b4baec90fc118abf7e5bde3d27cfcf1cd72c
   languageName: node
   linkType: hard
 

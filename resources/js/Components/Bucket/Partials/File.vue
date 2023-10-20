@@ -9,6 +9,7 @@ import route from "ziggy-js";
 import DeleteModal from "@components/Bucket/Modals/DeleteModal.vue";
 import FileMoveModal from "@components/Bucket/Modals/FileMoveModal.vue";
 import SlideOver from "@components/UI/SlideOver.vue";
+import { useSelectedFiles } from "@composables/selectedFiles";
 
 const props = defineProps({
   file: {
@@ -119,6 +120,9 @@ const download = () => {
 const onDragStart = (event) => {
   event.dataTransfer.setData('file', props.file.path)
 }
+
+const { isFileSelected, toggleSelectFile } = useSelectedFiles();
+
 </script>
 
 <template>
@@ -268,9 +272,13 @@ const onDragStart = (event) => {
   </SlideOver>
 
   <div
-    draggable="true"
+    :draggable="!hideMenu"
     class="flex relative flex-col space-y-3 cursor-pointer justify-between rounded-md text-gray-500 ring-1 ring-inset ring-gray-500/10 hover:shadow-md p-3 bg-white dark:bg-slate-800"
+    :class="{
+      'ring-2 ring-teal-500/50' : isFileSelected(file) && !hideMenu
+    }"
     @dragstart="onDragStart"
+    @click="toggleSelectFile(file)"
   >
     <div class="flex gap-3">
       <div :class="['flex h-10 w-10 flex-none items-center justify-center rounded-lg', fileIcon(file.extension).color]">

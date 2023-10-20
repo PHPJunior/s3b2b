@@ -8,7 +8,7 @@ import OptionMenu from "@components/Bucket/Partials/OptionMenu.vue";
 import BucketForm from "@components/Bucket/Form/BucketForm.vue";
 import SlideOver from "@components/UI/SlideOver.vue";
 import DeleteModal from "@components/Bucket/Modals/DeleteModal.vue";
-import { DialogTitle } from "@headlessui/vue";
+import {DialogTitle, MenuItem} from "@headlessui/vue";
 import { ExclamationCircleIcon } from "@heroicons/vue/24/outline/index.js";
 import FileUploadModal from "@components/Bucket/Modals/FileUploadModal.vue";
 import {
@@ -361,7 +361,7 @@ onMounted(() => {
           'px-3 py-2 leading-6 text-sm',
           'cursor-pointer',
           'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50',
-          'dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:ring-0'
+          'dark:bg-gray-700 dark:text-white dark:hover:bg-white/20 dark:ring-0'
         ]"
         @click="openNewFolderModal = true"
       >
@@ -380,7 +380,7 @@ onMounted(() => {
           'px-3 py-2 leading-6 text-sm',
           'cursor-pointer',
           'rounded-md bg-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50',
-          'dark:bg-white/10 dark:text-white dark:hover:bg-white/20 dark:ring-0'
+          'dark:bg-gray-700 dark:text-white dark:hover:bg-white/20 dark:ring-0'
         ]"
         title="Upload"
         @click="openFileUploadModal = true"

@@ -23,6 +23,13 @@ composer install
 yarn install && yarn dev
 cp .env.example .env
 
+# update mail configs to share files via email
+MAIL_MAILER=
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+
 php artisan key:generate
 php artisan migrate
 
@@ -40,9 +47,9 @@ php artisan test
 - [x] drag and move to folder
 - [x] update file visibility
 - [x] view file details
-- [ ] file multi select
-- [ ] file multi delete
-- [ ] file multi download
+- [x] share files via email
+- [ ] file multi select and move
+- [ ] file multi select and delete
 - [x] test cases
 
 ## Credits

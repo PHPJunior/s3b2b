@@ -9,6 +9,12 @@ export default {
       'new_folder': {
         'title': 'New Folder',
         'description': 'Fill in the form below to create a new folder.',
+      },
+      'share_files': {
+        'title': 'Share Files',
+        'description': 'Enter the email addresses of the people you want to share the following files with:',
+        'emails_placeholder': 'Enter email',
+        'message': 'Add a message (optional)',
       }
     },
     'file': {
@@ -58,10 +64,12 @@ export default {
     'upload': 'Upload',
     'move': 'Move',
     'new_folder': 'New Folder',
-    'download': 'Download'
+    'download': 'Download',
+    'send': 'Send',
   },
   'plural': {
     'items': 'Item | Items',
+    'files_selected': '{count} File Selected | {count} Files Selected',
   },
   'empty_state': {
     'title': 'No buckets',
@@ -71,13 +79,16 @@ export default {
     'delete_title': 'Are you sure?',
     'delete_folder': 'You are about to delete the following folder, this cannot be undone:',
     'delete_file': 'You are about to delete the following file, this cannot be undone:',
-    'delete_bucket': 'You are about to delete the following bucket, this cannot be undone:',
+    'delete_bucket': 'You are about to delete the following bucket, this cannot be undone:'
   },
   'menus': {
     'view': 'View',
     'edit': 'Edit',
     'delete': 'Delete',
     'move': 'Move',
-    'upload': 'Upload'
+    'upload': 'Upload',
+    'share': 'Share',
+    'clear': 'Clear',
+    'clear_selected_files': 'Clear Files'
   }
 }

@@ -31,6 +31,10 @@ defineProps({
   },
 });
 
+const onClick = (event) => {
+  event.stopPropagation()
+}
+
 </script>
 
 <template>
@@ -39,7 +43,10 @@ defineProps({
     class="relative inline-block text-left"
   >
     <div>
-      <MenuButton class="-mt-2 -mr-3 flex items-center rounded-full p-2 text-gray-400 hover:text-gray-600">
+      <MenuButton
+        class="-mr-2 flex items-center rounded-full text-gray-400 hover:text-gray-600"
+        @click="onClick"
+      >
         <span class="sr-only">Open options</span>
         <slot name="menu-button">
           <EllipsisVerticalIcon
@@ -65,98 +72,100 @@ defineProps({
         }"
       >
         <div class="divide-y divide-gray-200 dark:divide-white/5">
-          <MenuItem
-            v-if="!hideMove"
-            v-slot="{ active }"
-            class="rounded-t-md"
-          >
-            <a
-              href="#"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
-              @click="emit('move')"
+          <slot name="items">
+            <MenuItem
+              v-if="!hideMove"
+              v-slot="{ active }"
+              class="rounded-t-md"
             >
-              <FolderIcon
-                class="mr-3 h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-              <span class="dark:text-white">
-                {{ $t('menus.move') }}
-              </span>
-            </a>
-          </MenuItem>
-          <MenuItem
-            v-if="!hideUpload"
-            v-slot="{ active }"
-          >
-            <a
-              href="#"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
-              @click="emit('upload')"
+              <a
+                href="#"
+                :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
+                @click="emit('move')"
+              >
+                <FolderIcon
+                  class="mr-3 h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+                <span class="dark:text-white">
+                  {{ $t('menus.move') }}
+                </span>
+              </a>
+            </MenuItem>
+            <MenuItem
+              v-if="!hideUpload"
+              v-slot="{ active }"
             >
-              <CloudArrowUpIcon
-                class="mr-3 h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-              <span class="dark:text-white">
-                {{ $t('menus.upload') }}
-              </span>
-            </a>
-          </MenuItem>
-          <MenuItem
-            v-if="!hideEdit"
-            v-slot="{ active }"
-          >
-            <a
-              href="#"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
-              @click="emit('edit')"
+              <a
+                href="#"
+                :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
+                @click="emit('upload')"
+              >
+                <CloudArrowUpIcon
+                  class="mr-3 h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+                <span class="dark:text-white">
+                  {{ $t('menus.upload') }}
+                </span>
+              </a>
+            </MenuItem>
+            <MenuItem
+              v-if="!hideEdit"
+              v-slot="{ active }"
             >
-              <PencilSquareIcon
-                class="mr-3 h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-              <span class="dark:text-white">
-                {{ $t('menus.edit') }}
-              </span>
-            </a>
-          </MenuItem>
-          <MenuItem
-            v-if="!hideDelete"
-            v-slot="{ active }"
-          >
-            <a
-              href="#"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
-              @click="emit('delete')"
+              <a
+                href="#"
+                :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
+                @click="emit('edit')"
+              >
+                <PencilSquareIcon
+                  class="mr-3 h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+                <span class="dark:text-white">
+                  {{ $t('menus.edit') }}
+                </span>
+              </a>
+            </MenuItem>
+            <MenuItem
+              v-if="!hideDelete"
+              v-slot="{ active }"
             >
-              <TrashIcon
-                class="mr-3 h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-              <span class="dark:text-white">
-                {{ $t('menus.delete') }}
-              </span>
-            </a>
-          </MenuItem>
-          <MenuItem
-            v-if="!hideView"
-            v-slot="{ active }"
-            class="rounded-b-md"
-          >
-            <a
-              href="#"
-              :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
-              @click="emit('view')"
+              <a
+                href="#"
+                :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
+                @click="emit('delete')"
+              >
+                <TrashIcon
+                  class="mr-3 h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+                <span class="dark:text-white">
+                  {{ $t('menus.delete') }}
+                </span>
+              </a>
+            </MenuItem>
+            <MenuItem
+              v-if="!hideView"
+              v-slot="{ active }"
+              class="rounded-b-md"
             >
-              <EyeIcon
-                class="mr-3 h-5 w-5 text-gray-400"
-                aria-hidden="true"
-              />
-              <span class="dark:text-white">
-                {{ $t('menus.view') }}
-              </span>
-            </a>
-          </MenuItem>
+              <a
+                href="#"
+                :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'flex px-4 py-2 text-sm', 'dark:hover:bg-slate-500']"
+                @click="emit('view')"
+              >
+                <EyeIcon
+                  class="mr-3 h-5 w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+                <span class="dark:text-white">
+                  {{ $t('menus.view') }}
+                </span>
+              </a>
+            </MenuItem>
+          </slot>
         </div>
       </MenuItems>
     </transition>
